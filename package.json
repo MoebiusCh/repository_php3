@@ -2,12 +2,23 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "concurrently \"vite\" \"php artisan serve\"",
-        "build": "vite build"
+        "start": "concurrently \"php artisan serve --port=6835\" \"vite\" \"tailwindcss -i ./resources/css/input.css -o ./resources/css/output.css --watch\"",
+        "build": "vite build",
+        "format": "npx prettier --write resources/"
     },
     "devDependencies": {
+        "@tailwindcss/aspect-ratio": "^0.4.2",
+        "@tailwindcss/container-queries": "^0.1.1",
+        "@tailwindcss/forms": "^0.5.7",
+        "@tailwindcss/typography": "^0.5.13",
+        "autoprefixer": "^10.4.19",
         "axios": "^1.6.4",
         "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.4.38",
+        "prettier": "^3.2.5",
+        "prettier-plugin-blade": "^2.1.13",
+        "prettier-plugin-tailwindcss": "^0.5.14",
+        "tailwindcss": "^3.4.3",
         "vite": "^5.0"
     },
     "dependencies": {
