@@ -32,30 +32,7 @@
         </div>
     </div>
 
-    <?php
-    $contributors = [
-        [
-            'avatarUrl' => 'https://avatars.githubusercontent.com/u/1?v=4',
-            'handle' => 'johndoe',
-        ],
-        [
-            'avatarUrl' => 'https://avatars.githubusercontent.com/u/2?v=4',
-            'handle' => 'alice',
-        ],
-        [
-            'avatarUrl' => 'https://avatars.githubusercontent.com/u/3?v=4',
-            'handle' => 'bob',
-        ],
-        [
-            'avatarUrl' => 'https://avatars.githubusercontent.com/u/4?v=4',
-            'handle' => 'charlie',
-        ],
-        [
-            'avatarUrl' => 'https://avatars.githubusercontent.com/u/5?v=5',
-            'handle' => 'dave',
-        ],
-    ];
-    ?>
+
 
     <div>
         <div class="flex items-center space-x-2 text-base">
@@ -109,4 +86,16 @@
         Save changes
     </button>
 
+    <ul role="list" class="p-6 divide-y divide-slate-200">
+        @foreach ($contributors as $user)
+            <!-- Remove top/bottom padding when first/last child -->
+            <li class="flex py-4 first:pt-0 last:pb-0">
+                <img class="h-10 w-10 rounded-full" src="{{ $user['avatarUrl'] }}" alt="" />
+                <div class="ml-3 overflow-hidden">
+                    <p class="text-sm font-medium text-slate-900">{{ $user['handle'] }}</p>
+                    <p class="text-sm text-slate-500 truncate">{{ $user['email'] }}</p>
+                </div>
+            </li>
+        @endforeach
+    </ul>
 @endsection
