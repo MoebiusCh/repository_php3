@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('tieuDe');
             $table->text('noiDung');
+            $table->integer('category_id');
             $table->foreign('category_id')->references('id')
-                ->on('tin_category')->onDelete('cascade');
+                ->on('tin_category')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

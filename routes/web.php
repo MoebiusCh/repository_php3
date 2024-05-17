@@ -28,4 +28,4 @@ Route::prefix('user')->name('user.')->group(function () {
 
 Route::get('tintuc', [tinTucController::class, 'index'])->name('tintuc');
 Route::get('tintrongloai/{id}', [tinTucController::class, 'tintrongloai']);
-Route::get('tindetail/{id}', [tinTucController::class, 'tindetail']);
+Route::get('tindetail/{id}', [tinTucController::class, 'detail'])->name('tindetail');
