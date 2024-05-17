@@ -1,4 +1,3 @@
-@include('layout.head')
 <header class="bg-black">
     <nav class="mx-52 flex justify-between py-4 text-slate-400">
         <div class="left flex place-items-center content-center space-x-10">
@@ -12,7 +11,7 @@
                 <a href="">Khám phá</a>
             </div>
             <div class="hover:text-slate-50">
-                <a href="">Tin tức</a>
+                <a href="{{ route('tintuc') }}">Tin tức</a>
             </div>
             <div class="hover:text-slate-50">
                 <a href="">Phản hồi</a>
