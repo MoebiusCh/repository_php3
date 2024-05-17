@@ -8,4 +8,4 @@
         @vite(['resources/css/output.css', 'resources/js/app.js'])
         <!-- Styles -->
     </head>
-    <body class="overflow-x-hidden">
+    <body class="overflow-x-hidden ">
