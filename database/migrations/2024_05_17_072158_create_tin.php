@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tin', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('tieuDe');
             $table->text('noiDung');
-            $table->integer('category_id');
+            $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')
                 ->on('tin_category')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

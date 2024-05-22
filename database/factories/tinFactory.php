@@ -23,7 +23,7 @@ class tinFactory extends Factory
             'tieuDe' => fake()->name(),
             'noiDung' => Str::random(50),
             'created_at' => Date::now()->format('Y-m-d'),
-            'category_id' => 1,
+            'category_id' => rand(1, 2),
         ];
     }
 }
