@@ -1,5 +1,5 @@
 @include('layout.head')
-@include('layout.admin.sideboard')
+@livewire('admin.sideboard')
 
 @yield('content')
 

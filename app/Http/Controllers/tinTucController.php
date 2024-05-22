@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\tinTuc;
+use App\Models\tin;
 use App\Models\tinTucCategory;
 use Illuminate\Support\Facades\DB;
 
@@ -11,10 +11,10 @@ class tinTucController extends Controller
 {
     public function index()
     {
-        // $tin = tinTuc::get(['tieuDe', 'noiDung', 'created_at'])
+        // $tin = tin::get(['tieuDe', 'noiDung', 'created_at'])
         //     ->sortByDesc('created_at')->take(10);
 
-        $tin = DB::table('tin_tuc')
+        $tin = DB::table('tin')
             ->select('tieuDe', 'noiDung', 'created_at')
             ->orderBy('created_at', 'desc')
             ->limit(10)

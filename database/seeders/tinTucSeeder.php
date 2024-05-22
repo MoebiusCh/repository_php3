@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\tinTuc;
+use App\Models\tin;
 
 class tinTucSeeder extends Seeder
 {
@@ -13,6 +13,6 @@ class tinTucSeeder extends Seeder
      */
     public function run(): void
     {
-        tinTuc::factory(10)->create();
+        tin::factory(10)->create();
     }
 }
