@@ -6,6 +6,11 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\tinTucSeeder;
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\ProductSeeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\OrderSeeder;
+use Database\Seeders\OrderDetailSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,7 +21,12 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         $this->call([
-            tinTucSeeder::class
+            tinTucSeeder::class,
+            CategorySeeder::class,
+            ProductSeeder::class,
+            UserSeeder::class,
+            OrderSeeder::class,
+            OrderDetailSeeder::class,
         ]);
 
         User::factory()->create([

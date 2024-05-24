@@ -11,12 +11,13 @@ class CreateTinCategory extends Migration
      */
     public function up(): void
     {
-
-        Schema::create('tin_category', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('tin_category')) {
+            Schema::create('tin_category', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
