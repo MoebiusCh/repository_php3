@@ -8,6 +8,7 @@ class CreateProductsTable extends Migration
 {
     public function up()
     {
+        if (Schema::hasTable('products')) return;
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('title');
