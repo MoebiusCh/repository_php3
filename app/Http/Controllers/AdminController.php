@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Category;
 
 class AdminController extends Controller
 {
@@ -27,5 +28,11 @@ class AdminController extends Controller
     {
         $users = User::all();
         return view('admin.user.list', compact('users'));
+    }
+
+    public function category()
+    {
+        $categories = Category::all();
+        return view('admin.category_product.list', compact('categories'));
     }
 }
