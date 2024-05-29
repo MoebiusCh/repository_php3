@@ -14,7 +14,7 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('image')->nullable();
             $table->decimal('price', 8, 2);
-            $table->tinyIncrements('sale')->default(0);
+            $table->tinyInteger('sale')->default(0);
             $table->text('description')->nullable();
             $table->text('detail')->nullable();
             $table->tinyInteger('status')->default(1);

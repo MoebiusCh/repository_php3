@@ -25,6 +25,7 @@ class AdminController extends Controller
     }
     public function userlist()
     {
-        return view('admin.user.list');
+        $users = User::all();
+        return view('admin.user.list', compact('users'));
     }
 }

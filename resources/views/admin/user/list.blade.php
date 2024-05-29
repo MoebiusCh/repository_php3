@@ -5,80 +5,38 @@
 @section('content')
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="min-h-dvh p-4 sm:ml-64">
-            <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400 rtl:text-right">
-                <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+            <table class="min-w-full bg-white">
+                <thead>
                     <tr>
-                        <th scope="col" class="px-6 py-3">User name</th>
-                        <th scope="col" class="px-6 py-3">Color</th>
-                        <th scope="col" class="px-6 py-3">Category</th>
-                        <th scope="col" class="px-6 py-3">Price</th>
-                        <th scope="col" class="px-6 py-3">Action</th>
+                        <th class="py-2 px-4 border-b">ID</th>
+                        <th class="py-2 px-4 border-b">Name</th>
+                        <th class="py-2 px-4 border-b">Email</th>
+                        <th class="py-2 px-4 border-b">Email Verified At</th>
+                        <th class="py-2 px-4 border-b">Role</th>
+                        <th class="py-2 px-4 border-b">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr
-                        class="border-b odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                    >
-                        <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                            Apple MacBook Pro 17"
-                        </th>
-                        <td class="px-6 py-4">Silver</td>
-                        <td class="px-6 py-4">Laptop</td>
-                        <td class="px-6 py-4">$2999</td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="border-b odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                    >
-                        <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                            Microsoft Surface Pro
-                        </th>
-                        <td class="px-6 py-4">White</td>
-                        <td class="px-6 py-4">Laptop PC</td>
-                        <td class="px-6 py-4">$1999</td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="border-b odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                    >
-                        <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                            Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">Black</td>
-                        <td class="px-6 py-4">Accessories</td>
-                        <td class="px-6 py-4">$99</td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="border-b odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                    >
-                        <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                            Google Pixel Phone
-                        </th>
-                        <td class="px-6 py-4">Gray</td>
-                        <td class="px-6 py-4">Phone</td>
-                        <td class="px-6 py-4">$799</td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                            Apple Watch 5
-                        </th>
-                        <td class="px-6 py-4">Red</td>
-                        <td class="px-6 py-4">Wearables</td>
-                        <td class="px-6 py-4">$999</td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
-                        </td>
-                    </tr>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td class="py-2 px-4 border-b">{{ $user->id }}</td>
+                            <td class="py-2 px-4 border-b">{{ $user->name }}</td>
+                            <td class="py-2 px-4 border-b">{{ $user->email }}</td>
+                            <td class="py-2 px-4 border-b">{{ $user->email_verified_at ?? 'Not Verified' }}</td>
+                            <td class="py-2 px-4 border-b">{{ $user->role ? 'Admin': 'Người dùng' }}</td>
+                            <td class="py-2 px-4 border-b">
+                                <a href="{{ route('admin.users.edit', $user->id) }}"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded">Edit</a>
+                                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
+                                    class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded"
+                                        onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
