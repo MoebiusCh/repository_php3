@@ -1,7 +1,7 @@
 <div>
     <div class="carousel w-full">
         <div id="item1" class="carousel-item w-full">
-            <img src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg" class="w-full" />
+            <img src="{{ asset('storage/img/banner/banner-1.jpg') }}" class="w-full" />
         </div>
         <div id="item2" class="carousel-item w-full">
             <img src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.jpg" class="w-full" />
@@ -30,7 +30,7 @@
                 <form class="card space-x-1 bg-base-100 shadow-xl">
                     <figure>
                         <a href="{{ route('product.list.show', ['list' => $item->id]) }}">
-                            <img src="{{ $item->image }}" alt="Shoes" class="cursor-pointer" />
+                            <img src="{{ $item->image }}" alt="Shoes" class="cursor-pointer lg:max-h-40" />
                         </a>
                     </figure>
                     <div class="card-body">
@@ -40,12 +40,11 @@
                         </h2>
                         <p class="max-w-xs truncate">{{ $item->description }}...</p>
                         <div class="flex">
-                            <div class="badge badge-outline">Fashion</div>
-                            <div class="badge badge-outline">Products</div>
+                            <div class="badge badge-outline">{{ $item->category->name }}</div>
                         </div>
                         <div class="card-actions place-items-center justify-between">
                             <div class="text-justify">
-                                100.000.000
+                                {{ $item->price }}
                                 <sup>đ</sup>
                             </div>
                             <button class="btn btn-primary">Buy Now</button>
@@ -67,93 +66,6 @@
                     </a>
                     <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes"
                         class="cursor-pointer" />
-                    </a>
-                </figure>
-                <div class="card-body">
-                    <h2 class="card-title">
-                        Shoes!
-                        <div class="badge badge-secondary">NEW</div>
-                    </h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div class="flex">
-                        <div class="badge badge-outline">Fashion</div>
-                        <div class="badge badge-outline">Products</div>
-                    </div>
-                    <div class="card-actions place-items-center justify-between">
-                        <div class="text-justify">
-                            100.000.000
-                            <sup>đ</sup>
-                        </div>
-                        <button class="btn btn-primary">Buy Now</button>
-                    </div>
-                </div>
-            </form>
-            <form class="card space-x-1 bg-base-100 shadow-xl">
-                <figure>
-                    <a href="{{ route('product.list.show', ['list' => 1]) }}">
-                        <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-                            alt="Shoes" class="cursor-pointer" />
-                    </a>
-                    <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes"
-                        class="cursor-pointer" />
-                    </a>
-                </figure>
-                <div class="card-body">
-                    <h2 class="card-title">
-                        Shoes!
-                        <div class="badge badge-secondary">NEW</div>
-                    </h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div class="flex">
-                        <div class="badge badge-outline">Fashion</div>
-                        <div class="badge badge-outline">Products</div>
-                    </div>
-                    <div class="card-actions place-items-center justify-between">
-                        <div class="text-justify">
-                            100.000.000
-                            <sup>đ</sup>
-                        </div>
-                        <button class="btn btn-primary">Buy Now</button>
-                    </div>
-                </div>
-            </form>
-            <form class="card space-x-1 bg-base-100 shadow-xl">
-                <figure>
-                    <a href="{{ route('product.list.show', ['list' => 1]) }}">
-                        <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-                            alt="Shoes" class="cursor-pointer" />
-                    </a>
-                    <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes"
-                        class="cursor-pointer" />
-                    </a>
-                </figure>
-                <div class="card-body">
-                    <h2 class="card-title">
-                        Shoes!
-                        <div class="badge badge-secondary">NEW</div>
-                    </h2>
-                    <p>If a dog chews shoes whose shoes does he choose?</p>
-                    <div class="flex">
-                        <div class="badge badge-outline">Fashion</div>
-                        <div class="badge badge-outline">Products</div>
-                    </div>
-                    <div class="card-actions place-items-center justify-between">
-                        <div class="text-justify">
-                            100.000.000
-                            <sup>đ</sup>
-                        </div>
-                        <button class="btn btn-primary">Buy Now</button>
-                    </div>
-                </div>
-            </form>
-            <form class="card space-x-1 bg-base-100 shadow-xl">
-                <figure>
-                    <a href="{{ route('product.list.show', ['list' => 1]) }}">
-                        <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-                            alt="Shoes" class="cursor-pointer" />
-                    </a>
-                    <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-                        alt="Shoes" class="cursor-pointer" />
                     </a>
                 </figure>
                 <div class="card-body">

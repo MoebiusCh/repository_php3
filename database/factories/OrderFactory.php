@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Order;
 use App\Models\User;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
  */
@@ -26,6 +27,7 @@ class OrderFactory extends Factory
             'buy_date' => $this->faker->date,
             'status' => $this->faker->word,
             'user_id' => User::factory(),
+            'total_amount' => fake()->randomFloat(2, 20000, 500000)
         ];
     }
 }

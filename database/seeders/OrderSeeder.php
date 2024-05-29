@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Order;
+use Illuminate\Support\Facades\Schema;
 
 class OrderSeeder extends Seeder
 {
@@ -13,6 +14,9 @@ class OrderSeeder extends Seeder
      */
     public function run(): void
     {
-        Order::factory(20)->create();
+        Schema::disableForeignKeyConstraints();
+        Order::truncate();
+        Schema::enableForeignKeyConstraints();
+        Order::factory(1)->create();
     }
 }

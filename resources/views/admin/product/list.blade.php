@@ -5,80 +5,57 @@
 @section('content')
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="min-h-dvh p-4 sm:ml-64">
-            <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400 rtl:text-right">
-                <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+            <table class="min-w-full bg-white">
+                <thead>
                     <tr>
-                        <th scope="col" class="px-6 py-3">Product name</th>
-                        <th scope="col" class="px-6 py-3">Color</th>
-                        <th scope="col" class="px-6 py-3">Category</th>
-                        <th scope="col" class="px-6 py-3">Price</th>
-                        <th scope="col" class="px-6 py-3">Action</th>
+                        <th class="py-2 px-4 border-b">ID</th>
+                        <th class="py-2 px-4 border-b">Title</th>
+                        <th class="py-2 px-4 border-b">Image</th>
+                        <th class="py-2 px-4 border-b">Price</th>
+                        <th class="py-2 px-4 border-b">Sale</th>
+                        <th class="py-2 px-4 border-b">Status</th>
+                        <th class="py-2 px-4 border-b">Is Hot</th>
+                        <th class="py-2 px-4 border-b">Sale Rate</th>
+                        <th class="py-2 px-4 border-b">Category</th>
+                        <th class="py-2 px-4 border-b">Created At</th>
+                        <th class="py-2 px-4 border-b">Updated At</th>
+                        <th class="py-2 px-4 border-b">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr
-                        class="border-b odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                    >
-                        <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                            Apple MacBook Pro 17"
-                        </th>
-                        <td class="px-6 py-4">Silver</td>
-                        <td class="px-6 py-4">Laptop</td>
-                        <td class="px-6 py-4">$2999</td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="border-b odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                    >
-                        <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                            Microsoft Surface Pro
-                        </th>
-                        <td class="px-6 py-4">White</td>
-                        <td class="px-6 py-4">Laptop PC</td>
-                        <td class="px-6 py-4">$1999</td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="border-b odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                    >
-                        <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                            Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">Black</td>
-                        <td class="px-6 py-4">Accessories</td>
-                        <td class="px-6 py-4">$99</td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="border-b odd:bg-white even:bg-gray-50 dark:border-gray-700 odd:dark:bg-gray-900 even:dark:bg-gray-800"
-                    >
-                        <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                            Google Pixel Phone
-                        </th>
-                        <td class="px-6 py-4">Gray</td>
-                        <td class="px-6 py-4">Phone</td>
-                        <td class="px-6 py-4">$799</td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                            Apple Watch 5
-                        </th>
-                        <td class="px-6 py-4">Red</td>
-                        <td class="px-6 py-4">Wearables</td>
-                        <td class="px-6 py-4">$999</td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
-                        </td>
-                    </tr>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td class="py-2 px-4 border-b">{{ $product->id }}</td>
+                            <td class="py-2 px-4 border-b">{{ $product->title }}</td>
+                            <td class="py-2 px-4 border-b">
+                                @if ($product->image)
+                                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}"
+                                        class="w-16 h-16 object-cover">
+                                @else
+                                    N/A
+                                @endif
+                            </td>
+                            <td class="py-2 px-4 border-b">{{ $product->price }}</td>
+                            <td class="py-2 px-4 border-b">{{ $product->sale ?? 'N/A' }}</td>
+                            <td class="py-2 px-4 border-b">{{ $product->status ? 'Active' : 'Nonactive' }}</td>
+                            <td class="py-2 px-4 border-b">{{ $product->is_hot ? 'Yes' : 'No' }}</td>
+                            <td class="py-2 px-4 border-b">{{ $product->sale_rate }}</td>
+                            <td class="py-2 px-4 border-b">{{ $product->category->name }}</td>
+                            <td class="py-2 px-4 border-b">{{ $product->created_at }}</td>
+                            <td class="py-2 px-4 border-b">{{ $product->updated_at }}</td>
+                            <td class="py-2 px-4 border-b">
+                                <a href="{{ route('admin.products.edit', $product->id) }}"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded">Edit</a>
+                                <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST"
+                                    class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded"
+                                        onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

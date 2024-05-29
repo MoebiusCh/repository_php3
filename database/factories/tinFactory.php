@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Illuminate\Support\Testing\Fakes\Fake;
+use App\Models\tinTucCategory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\tin>
@@ -23,7 +24,11 @@ class tinFactory extends Factory
             'tieuDe' => fake()->name(),
             'noiDung' => Str::random(50),
             'created_at' => Date::now()->format('Y-m-d'),
-            'category_id' => rand(1, 2),
+            'category_id' => tinTucCategory::factory(),
         ];
+    }
+    public function tinCategory()
+    {
+        return $this->belongsTo(tinTucCategory::class);
     }
 }

@@ -14,10 +14,13 @@ class CreateProductsTable extends Migration
             $table->string('title');
             $table->string('image')->nullable();
             $table->decimal('price', 8, 2);
-            $table->decimal('sale', 8, 2)->nullable();
+            $table->tinyIncrements('sale')->default(0);
             $table->text('description')->nullable();
             $table->text('detail')->nullable();
-            $table->string('status');
+            $table->tinyInteger('status')->default(1);
+            // $table->enum('status', ['nonactive', 'active'])->default('Active');
+            $table->tinyInteger('is_hot')->default(0);
+            $table->integer('sale_rate')->default(0);
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->timestamps();
         });

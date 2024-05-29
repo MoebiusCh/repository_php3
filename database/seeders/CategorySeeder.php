@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
+use Illuminate\Support\Facades\Schema;
+
 class CategorySeeder extends Seeder
 {
     /**
@@ -12,6 +14,9 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::factory(10)->create();
+        Schema::disableForeignKeyConstraints();
+        Category::truncate();
+        Schema::enableForeignKeyConstraints();
+        Category::factory()->count(2)->create();
     }
 }

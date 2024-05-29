@@ -11,7 +11,8 @@ class Home extends Component
     public $products;
     public function render()
     {
-        $this->products = Product::all();
+        $this->products = Product::orderBy('id', 'desc')->get();
+
         return view('livewire.client.home');
     }
 }

@@ -1,6 +1,6 @@
 @include('layout.head')
 
-@livewire('header')
+@livewire('client.header')
 
 @yield('content')
 

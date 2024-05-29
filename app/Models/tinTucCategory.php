@@ -10,4 +10,8 @@ class tinTucCategory extends Model
     use HasFactory;
 
     protected $table = 'tin_category';
+
+    protected $fillable = [
+        'name',
+    ];
 }
