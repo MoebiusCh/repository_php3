@@ -7,10 +7,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\tinTucController;
 use App\Http\Controllers\shopController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\GuiEmail;
 /* Admin */
 
 require __DIR__ . "/admin.php";
 require __DIR__ . "/test.php";
+
+Route::get('/mail', function () {
+    Mail::to('phatthanthanh@gmail.com')->send(new GuiEmail());
+});
+
+
 /* Client */
 Route::get('/', function () {
     return view('home');

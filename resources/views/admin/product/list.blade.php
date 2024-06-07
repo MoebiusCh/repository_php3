@@ -5,6 +5,14 @@
 @section('content')
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="min-h-dvh p-4 sm:ml-64">
+            <a href="{{ route('admin.products.create') }}"> <button class="btn btn-neutral">
+                    Thêm sản phẩm
+                </button>
+            </a>
+            {{-- if exist message deleted --}}
+            @isset($deleted_message)
+                <span class="text-error"> {{ $deleted_message }}</span>
+            @endisset
             <table class="min-w-full bg-white">
                 <thead>
                     <tr>
@@ -51,7 +59,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded"
-                                        onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                                        onclick="return confirm('Bạn có chắc muốn xoá sản phẩm này?')">Delete</button>
                                 </form>
                             </td>
                         </tr>

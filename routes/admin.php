@@ -5,8 +5,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Livewire\Admin\Product\addProduct;
 
 Route::prefix('admin')->name('admin.')->group(function () {
+
+
     Route::get('', [AdminController::class, 'index'])
         ->name('dashboard');
     Route::get('product', [AdminController::class, 'product'])
@@ -23,6 +26,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
     Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::get('products/create', addProduct::class)->name('products.create');
     Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::post('products/store', [ProductController::class, 'store'])->name('products.store');
 });

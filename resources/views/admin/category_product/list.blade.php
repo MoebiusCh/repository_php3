@@ -4,6 +4,10 @@
 
 @section('content')
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <a href="{{ route('admin.products.create') }}"> <button class="btn btn-neutral">
+                Thêm danh mục
+            </button>
+        </a>
         <div class="min-h-dvh p-4 sm:ml-64">
             <table class="min-w-full bg-white">
                 <thead>

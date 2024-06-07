@@ -22,7 +22,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.product.add', compact('categories'));
     }
 
     /**
@@ -30,7 +31,33 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price' => 'required|numeric',
+            'sale' => 'nullable|numeric',
+            'description' => 'nullable|string',
+            'detail' => 'nullable|string',
+            'status' => 'required|integer',
+            'is_hot' => 'required|integer',
+            'sale_rate' => 'required|integer',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(storage_path('app/public/img/product'), $imageName);
+            $request->merge(['image' => $imageName]);
+        }
+        // End handle image upload
+        // $request->merge(['user_id' => auth()->user()->id]);
+
+
+        Product::create($request->all());
+
+        return redirect()->route('admin.product')->with('success', 'Product created successfully');
     }
 
     /**
@@ -79,6 +106,10 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('admin.product')->with('success', 'Product deleted successfully');
+        $image_path = storage_path('app/public/' . $product->image);
+        if(file_exists($image_path)){
+            unlink($image_path);
+        } 
+        return redirect()->route('admin.product')->with('deleted_message', 'Product deleted successfully');
     }
 }

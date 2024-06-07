@@ -1,6 +1,6 @@
 @extends('layout.general')
 @section('page_content')
     @livewire('admin.sideboard')
-    @yield('content')
+    {{ $slot }}
     @include('layout.admin.footer')
 @endsection

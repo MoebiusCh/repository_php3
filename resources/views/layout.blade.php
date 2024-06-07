@@ -1,9 +1,6 @@
-@include('layout.head')
-
-@livewire('client.header')
-
-@yield('content')
-
-@include('footer')
-
-@include('layout.foot')
+@extends('layout.general')
+@section('page_content')
+    @livewire('client.header')
+    @yield('content')
+    @include('footer')
+@endsection

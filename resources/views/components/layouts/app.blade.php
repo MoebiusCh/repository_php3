@@ -12,3 +12,10 @@
 </head>
 
 <body class="overflow-x-hidden">
+
+    {{ $slot }}
+
+    @livewireScripts
+</body>
+
+</html>
