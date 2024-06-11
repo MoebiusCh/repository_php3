@@ -46,8 +46,8 @@ class addProduct extends Component
 
     public function mount()
     {
-        $this->created_at =  date('Y-m-d H:i:s');
-        $this->updated_at =  date('Y-m-d H:i:s');
+        $this->created_at =  date('Y-m-d');
+        $this->updated_at =  date('Y-m-d');
     }
     public function storeProduct()
     {
@@ -57,7 +57,6 @@ class addProduct extends Component
 
         $name = '';
         if ($this->image) {
-            //filePath
             $name = md5($this->image . microtime()) . '.' . $this->image->extension();
             $this->image->storeAs('public/img/product', $name);
             $validated['image'] =  $name;

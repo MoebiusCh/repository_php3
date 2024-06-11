@@ -3,16 +3,36 @@
 @section('title', 'Danh sách sản phẩm')
 
 @section('content')
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    @livewire('admin.product.product-filter')
+    {{-- <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="min-h-dvh p-4 sm:ml-64">
-            <a href="{{ route('admin.products.create') }}"> <button class="btn btn-neutral">
-                    Thêm sản phẩm
-                </button>
-            </a>
-            {{-- if exist message deleted --}}
+            <div class="d-flex justify-content-between">
+                <a href="{{ route('admin.products.create') }}"> <button class="btn btn-neutral">
+                        Thêm sản phẩm
+                    </button>
+                </a>
+                <div class="col-md-3 m-1 d-flex">
+                    <div>
+                        <label for="" class="text-lg font-bold mb-4">Sắp xếp</label>
+                        <select class="select select-bordered w-full max-w-xs" wire:model.live='orderBy'>
+                            <option value="asc">Tăng dần</option>
+                            <option value="desc">Giảm dần</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="" class="text-lg font-bold mb-4">Search</label>
+                        <input type="text" placeholder="Nhập trên sản phẩm" class="input input-bordered w-full max-w-xs"
+                            wire:model.live.debounce.350ms='search' />
+                    </div>
+                </div>
+            </div>
             @isset($deleted_message)
                 <span class="text-error"> {{ $deleted_message }}</span>
             @endisset
+            @isset($success)
+                <span class="text-success"> {{ $success }}</span>
+            @endisset
+
             <table class="min-w-full bg-white">
                 <thead>
                     <tr>
@@ -52,7 +72,7 @@
                             <td class="py-2 px-4 border-b">{{ $product->created_at }}</td>
                             <td class="py-2 px-4 border-b">{{ $product->updated_at }}</td>
                             <td class="py-2 px-4 border-b">
-                                <a href="{{ route('admin.products.edit', $product->id) }}"
+                                <a href="{{ route('admin.products.testupdate', ['product' => $product->id]) }}"
                                     class="bg-blue-500 text-white px-4 py-2 rounded">Edit</a>
                                 <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST"
                                     class="inline-block">
@@ -67,5 +87,5 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> --}}
 @endsection

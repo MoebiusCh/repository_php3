@@ -97,6 +97,12 @@ class ProductController extends Controller
 
         $product->update($request->all());
 
+        $product->delete();
+        $image_path = storage_path('app/public/' . $product->image);
+        if (file_exists($image_path)) {
+            unlink($image_path);
+        }
+
         return redirect()->route('admin.product')->with('success', 'Product updated successfully');
     }
 
@@ -107,9 +113,9 @@ class ProductController extends Controller
     {
         $product->delete();
         $image_path = storage_path('app/public/' . $product->image);
-        if(file_exists($image_path)){
+        if (file_exists($image_path)) {
             unlink($image_path);
-        } 
+        }
         return redirect()->route('admin.product')->with('deleted_message', 'Product deleted successfully');
     }
 }

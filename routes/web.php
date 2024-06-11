@@ -9,6 +9,8 @@ use App\Http\Controllers\tinTucController;
 use App\Http\Controllers\shopController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\GuiEmail;
+// use App\Http\Livewire\Auth\Register;
+// use App\Http\Livewire\Auth\Login;
 /* Admin */
 
 require __DIR__ . "/admin.php";
@@ -18,6 +20,8 @@ Route::get('/mail', function () {
     Mail::to('phatthanthanh@gmail.com')->send(new GuiEmail());
 });
 
+// Route::get('register', [Register::class, 'render'])->name('register');
+// Route::get('login', [Login::class, 'render'])->name('login');
 
 /* Client */
 Route::get('/', function () {
@@ -30,6 +34,8 @@ Route::get('shop', [shopController::class, 'index'])
 Route::prefix('product')->name('product.')->group(function () {
     Route::resources(['list' => ProductController::class]);
 });
+
+Route::get('login', [UserController::class, 'login_page'])->name('login');
 
 Route::prefix('user')->name('user.')->group(function () {
     Route::get('login', [UserController::class, 'login_page'])->name('login');
