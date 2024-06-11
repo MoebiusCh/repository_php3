@@ -17,25 +17,25 @@ class updateProduct extends Component
 
     public $productId;
     // create variable with this array
-    #[Validate('required|string|max:255')]
+    #[Validate('required|string|max:255', onUpdate: false)]
     public $title = '';
-    #[Validate('nullable|sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048')]
+    // #[Validate('sometimes|nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', onUpdate: false)]
     public $image;
-    #[Validate('required|numeric')]
+    #[Validate('required|numeric', onUpdate: false)]
     public $price = '';
-    #[Validate('required|numeric')]
+    #[Validate('required|numeric', onUpdate: false)]
     public $sale = '';
-    #[Validate('nullable|string|max:255')]
+    #[Validate('nullable|string|max:255', onUpdate: false)]
     public $description = '';
-    #[Validate('nullable|string|max:255')]
+    #[Validate('nullable|string|max:255', onUpdate: false)]
     public $detail = '';
-    #[Validate('required|numeric')]
+    #[Validate('required|numeric', onUpdate: false)]
     public $status = '';
-    #[Validate('required|numeric')]
+    #[Validate('required|numeric', onUpdate: false)]
     public $is_hot = '';
-    #[Validate('required|numeric')]
+    #[Validate('required|numeric', onUpdate: false)]
     public $sale_rate = '';
-    #[Validate('required|numeric')]
+    #[Validate('required|numeric', onUpdate: false)]
     public $category_id = '';
     public $created_at = '';
     public $updated_at = '';
@@ -43,6 +43,7 @@ class updateProduct extends Component
     #[Layout('components.layouts.laid-back')]
 
     public $data;
+
     public function mount(Product $product)
     {
         $this->data = $product;
@@ -66,35 +67,33 @@ class updateProduct extends Component
         // dd($this->data);
         return view('livewire.admin.product.update', compact('categories'));
     }
-
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
     public function updateProduct()
     {
-        $validated = $this->validate([
-            'title' => 'required|string|max:255',
-            'image' => 'nullable|sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price' => 'required|numeric',
-            'sale' => 'required|numeric',
-            'description' => 'nullable|string|max:255',
-            'detail' => 'nullable|string|max:255',
-            'status' => 'required|numeric',
-            'is_hot' => 'required|numeric',
-            'sale_rate' => 'required|numeric',
-            'category_id' => 'required|numeric',
-        ]);
-
-        if ($this->image) {
+        $validatedData = $this->validate();
+        $product = Product::findOrFail($this->productId);
+        if ($this->image && !is_string($this->image)) {
+            $this->validate([
+                'image' => 'image|mimes:jpeg, png, jpg, gif, svg|max:2048',
+            ]);
             $name = md5($this->image->getClientOriginalName() . microtime()) . '.' . $this->image->extension();
             $this->image->storeAs('public/img/product', $name);
-            $validated['image'] = 'img/product/' . $name;
-        }
+            $validatedData['image'] = 'img/product/' . $name;
 
-        $product = Product::findOrFail($this->productId);
-        $image_path = storage_path('app/public/' . $product->image);
-        if (file_exists($image_path)) {
-            unlink($image_path);
+            // Xóa hình ảnh cũ nếu có
+            if ($product->image) {
+                $image_path = storage_path('app/public/' . $product->image);
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
+            }
+        } else {
+            $validatedData['image'] = $product->image;
         }
-
-        $product->update($validated);
+        $product->update($validatedData);
 
         return redirect()->route('admin.product')->with('success', 'Product updated successfully');
     }

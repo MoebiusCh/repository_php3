@@ -1,6 +1,8 @@
 @extends('layout.general')
 @section('page_content')
     @livewire('admin.sideboard')
-    {{ $slot }}
+    <div class="min-h-dvh">
+        {{ $slot }}
+    </div>
     @include('layout.admin.footer')
 @endsection

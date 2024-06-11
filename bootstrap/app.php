@@ -17,4 +17,6 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->report(function (InvalidOrderException $e) {
             // ...
         });
-    })->create();
+    })->withEvents(discover: [
+        __DIR__ . '/../app/Domain/Listeners',
+    ])->create();

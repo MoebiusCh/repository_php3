@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             // $table->enum('status', ['nonactive', 'active'])->default('Active');
             $table->tinyInteger('is_hot')->default(0);
             $table->integer('sale_rate')->default(0);
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->onDelete('restrict');
             $table->timestamps();
         });
     }

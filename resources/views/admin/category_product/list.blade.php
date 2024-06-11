@@ -4,11 +4,27 @@
 
 @section('content')
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <a href="{{ route('admin.products.create') }}"> <button class="btn btn-neutral">
-                Thêm danh mục
-            </button>
-        </a>
         <div class="min-h-dvh p-4 sm:ml-64">
+            <div>
+                <a href="{{ route('admin.products.create') }}"> <button class="btn btn-neutral">
+                        Thêm danh mục
+                    </button>
+                </a>
+                <div class="flex col-md-3 m-1">
+                    <div>
+                        <label for="" class="text-lg font-bold mb-4">Sắp xếp</label>
+                        <select class="select select-bordered w-full max-w-xs" wire:model.live="orderBy">
+                            <option value="asc">Tăng dần</option>
+                            <option value="desc">Giảm dần</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="" class="text-lg font-bold mb-4">Search</label>
+                        <input type="text" placeholder="Nhập tên danh mục" class="input input-bordered w-full max-w-xs"
+                            wire:model.live.debounce.350ms="search" />
+                    </div>
+                </div>
+            </div>
             <table class="min-w-full bg-white">
                 <thead>
                     <tr>

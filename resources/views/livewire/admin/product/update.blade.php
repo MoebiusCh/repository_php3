@@ -12,21 +12,23 @@
 
         </div>
         <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="image">Image</label>
             <input type="file" wire:model="image" id='image' name="image">
             <div wire:loading wire:target="image" class="text-sm text-green-400 italic">Uploading...</div>
             @if ($image && !$errors->has('image'))
                 @if (is_string($image))
                     <img src="{{ asset('storage/' . $image) }}" alt="{{ $title }}" class="mb-2" width="150">
-                @else
+                @elseif (in_array($image->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif', 'svg']))
                     <img src="{{ $image->temporaryUrl() }}" alt="{{ $title }}" class="mb-2" width="150">
+                @else
+                    <span class="text-red-500 text-sm">Invalid file format. Please upload an image file.</span>
                 @endif
             @endif
-            {{-- error message --}}
             @error('image')
                 <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
-
         </div>
+
 
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="price">Price</label>
@@ -111,7 +113,7 @@
         <div class="flex items-center justify-between w-52">
             <button type="submit"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                Thêm
+                Cập nhật
             </button>
             <a href="{{ route('admin.product') }}"
                 class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">

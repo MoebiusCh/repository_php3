@@ -46,7 +46,7 @@
                         />
                     </svg>
                     <span class="ms-3 flex-1 whitespace-nowrap">
-                        <a href="{{ route('admin.category') }}">Danh mục</a>
+                        <a href="{{ route('admin.categories.index') }}">Danh mục</a>
                     </span>
                     <span
                         class="ms-3 inline-flex items-center justify-center rounded-full bg-gray-100 px-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300"

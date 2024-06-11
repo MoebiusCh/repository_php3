@@ -32,7 +32,7 @@ class ProductFilter extends Component
     {
         $products = Product::query()
             ->where('title', 'like', '%' . $this->search . '%')
-            ->orderBy('title', $this->orderBy)
+            ->orderBy('id', $this->orderBy)
             ->paginate(10);
 
         return view('livewire.admin.product.product-filter', compact('products'));
