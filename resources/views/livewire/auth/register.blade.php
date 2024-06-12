@@ -37,6 +37,9 @@
                 <input wire:model="password_confirmation" type="password" id="password_confirmation"
                     name="password_confirmation"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    @error('password_confirmation')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="flex items-center justify-between">
