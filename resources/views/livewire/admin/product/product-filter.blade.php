@@ -59,7 +59,7 @@
                         </td>
                         <td class="py-2 px-4 border-b">{{ $product->price }}</td>
                         <td class="py-2 px-4 border-b">{{ $product->sale > 0 ? 'Có' : 'Không' }}</td>
-                        <td class="py-2 px-4 border-b">{{ $product->status ? 'Active' : 'Nonactive' }}</td>
+                        <td class="py-2 px-4 border-b">{{ $product->status ? 'Active' : 'Deactive' }}</td>
                         <td class="py-2 px-4 border-b">{{ $product->is_hot ? 'Yes' : 'No' }}</td>
                         <td class="py-2 px-4 border-b">{{ $product->sale_rate }}</td>
                         <td class="py-2 px-4 border-b">{{ $product->category->name }}</td>

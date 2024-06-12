@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -9,8 +11,8 @@ use App\Http\Controllers\tinTucController;
 use App\Http\Controllers\shopController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\GuiEmail;
-// use App\Http\Livewire\Auth\Register;
-// use App\Http\Livewire\Auth\Login;
+use App\Livewire\Auth\Register;
+use App\Livewire\Auth\Login;
 /* Admin */
 
 require __DIR__ . "/admin.php";
@@ -20,27 +22,33 @@ Route::get('/mail', function () {
     Mail::to('phatthanthanh@gmail.com')->send(new GuiEmail());
 });
 
-// Route::get('register', [Register::class, 'render'])->name('register');
-// Route::get('login', [Login::class, 'render'])->name('login');
 
 /* Client */
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('shop', [shopController::class, 'index'])
     ->name('shop');
 
+// Product
 Route::prefix('product')->name('product.')->group(function () {
     Route::resources(['list' => ProductController::class]);
 });
 
-Route::get('login', [UserController::class, 'login_page'])->name('login');
-
+// User
 Route::prefix('user')->name('user.')->group(function () {
-    Route::get('login', [UserController::class, 'login_page'])->name('login');
+    // Route::get('login', [UserController::class, 'login_page'])->name('login');
     Route::resources(['list' => UserController::class]);
 });
+Route::get('login', Login::class)->name('login');
+Route::get('register', Register::class)->name('register');
+Route::get('logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->forget('user_info');
+    return redirect()->route('home');
+})->name('logout');
+
 
 Route::get('tintuc', [tinTucController::class, 'index'])->name('tintuc');
 Route::get('tintrongloai/{id}', [tinTucController::class, 'tintrongloai']);

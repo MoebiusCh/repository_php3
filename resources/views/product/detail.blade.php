@@ -15,13 +15,13 @@
         <div class="grid-cols-product-box mt-section-space grid gap-16">
             <div class="grid grid-cols-1 gap-y-2">
                 <div>
-                    <img class="w-full h-72" src="{{ asset($product->image) }}" alt="" />
+                    <img class="w-full h-72" src="{{ asset('storage/' . $product->image) }}" alt="" />
                 </div>
                 <div class="grid grid-cols-4 gap-x-2">
-                    <img class="" src="{{ asset($product->image) }}" alt="" />
-                    <img class="" src="{{ asset($product->image) }}" alt="" />
-                    <img class="" src="{{ asset($product->image) }}" alt="" />
-                    <img class="" src="{{ asset($product->image) }}" alt="" />
+                    <img class="" src="{{  asset('storage/' . $product->image) }}" alt="" />
+                    <img class="" src="{{  asset('storage/' . $product->image) }}" alt="" />
+                    <img class="" src="{{  asset('storage/' . $product->image) }}" alt="" />
+                    <img class="" src="{{  asset('storage/' . $product->image) }}" alt="" />
                 </div>
             </div>
 

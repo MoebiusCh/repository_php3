@@ -5,6 +5,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Mockery\Exception\InvalidOrderException;
 
+
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__ . '/../routes/web.php',
@@ -12,6 +13,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->alias([
+            'role.check' => App\Http\Middleware\CheckUserRole::class,
+            'auth.check' => \App\Http\Middleware\RedirectIfNotAuthenticated::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->report(function (InvalidOrderException $e) {

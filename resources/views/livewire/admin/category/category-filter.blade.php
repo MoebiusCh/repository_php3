@@ -25,18 +25,16 @@
                 <tr>
                     <th class="py-2 px-4 border-b">ID</th>
                     <th class="py-2 px-4 border-b">Name</th>
-                    <th class="py-2 px-4 border-b">Created At</th>
-                    <th class="py-2 px-4 border-b">Updated At</th>
+                    <th class="py-2 px-4 border-b">Số lượng sản phẩm</th>
                     <th class="py-2 px-4 border-b">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($categories as $category)
-                    <tr>
+                    <tr class="text-center">
                         <td class="py-2 px-4 border-b">{{ $category->id }}</td>
                         <td class="py-2 px-4 border-b">{{ $category->name }}</td>
-                        <td class="py-2 px-4 border-b">{{ $category->created_at }}</td>
-                        <td class="py-2 px-4 border-b">{{ $category->updated_at }}</td>
+                        <td class="py-2 px-4 border-b">{{ count($category->products) }}</td>
                         <td class="py-2 px-4 border-b">
                             <a href="{{ route('admin.categories.edit', ['category' => $category]) }}"
                                 class="bg-blue-500 text-white px-4 py-2 rounded">Edit</a>

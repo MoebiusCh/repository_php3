@@ -12,7 +12,7 @@ use App\Livewire\Admin\Category\CategoryFilter;
 use App\Livewire\Admin\Category\CategoryEdit;
 use App\Livewire\Admin\Category\CategoryCreate;
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['role.check','auth','auth.check'])->group(function () {
     Route::get('', [AdminController::class, 'index'])
         ->name('dashboard');
     Route::get('product', [AdminController::class, 'product'])

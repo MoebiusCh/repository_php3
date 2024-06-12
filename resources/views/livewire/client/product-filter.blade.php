@@ -44,7 +44,7 @@
                 <form class="card space-x-1 bg-base-100 shadow-xl">
                     <figure>
                         <a href="{{ route('product.list.show', ['list' => $item->id]) }}">
-                            <img src="{{ $item->image }}" alt="Shoes" class="cursor-pointer lg:max-h-40" />
+                            <img src="{{  asset('storage/' . $item->image) }}" alt="Shoes" class="cursor-pointer lg:max-h-40" />
                         </a>
                     </figure>
                     <div class="card-body">

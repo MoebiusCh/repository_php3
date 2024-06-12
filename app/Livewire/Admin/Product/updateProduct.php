@@ -77,7 +77,7 @@ class updateProduct extends Component
         $product = Product::findOrFail($this->productId);
         if ($this->image && !is_string($this->image)) {
             $this->validate([
-                'image' => 'image|mimes:jpeg, png, jpg, gif, svg|max:2048',
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
             $name = md5($this->image->getClientOriginalName() . microtime()) . '.' . $this->image->extension();
             $this->image->storeAs('public/img/product', $name);

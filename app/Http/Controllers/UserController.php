@@ -21,7 +21,6 @@ class UserController extends Controller
     {
         return view('user.login');
     }
-
     /**
      * Show the form for creating a new resource.
      */

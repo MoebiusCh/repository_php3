@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Livewire\Admin\Category\CategoryFilter;
+use App\Events\CategoryDeleting;
 
 class CategoryController extends Controller
 {
@@ -52,7 +53,7 @@ class CategoryController extends Controller
         $action = $request->input('action');
 
         if ($action && in_array($action, ['delete', 'move'])) {
-            event(new \App\Events\CategoryDeleting($category, $action, $defaultCategoryId));
+            event(new CategoryDeleting($category, $action, $defaultCategoryId));
             return redirect()->route('admin.categories.index')->with('success', 'Category handled successfully.');
         }
 
