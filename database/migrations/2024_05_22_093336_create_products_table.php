@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->text('detail')->nullable();
             $table->tinyInteger('status')->default(1);
-            // $table->enum('status', ['nonactive', 'active'])->default('Active');
             $table->tinyInteger('is_hot')->default(0);
             $table->integer('sale_rate')->default(0);
             $table->foreignId('category_id')->constrained('categories')->onDelete('restrict');
