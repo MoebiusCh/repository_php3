@@ -27,7 +27,7 @@ class CategoryFilter extends Component
     {
         $categories = Category::query()
             ->where('name', 'like', '%' . $this->search . '%')
-            ->orderBy('name', $this->orderBy)
+            ->orderBy('id', $this->orderBy)
             ->paginate(10);
 
         return view('livewire.admin.category.category-filter', [

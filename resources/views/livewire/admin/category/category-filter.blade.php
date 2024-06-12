@@ -1,7 +1,7 @@
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <div class="min-h-dvh p-4 sm:ml-64">
         <div>
-            <a href="{{ route('admin.products.create') }}"> <button class="btn btn-neutral">
+            <a href="{{ route('admin.categories.create') }}"> <button class="btn btn-neutral">
                     Thêm danh mục
                 </button>
             </a>

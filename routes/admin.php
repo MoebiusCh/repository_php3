@@ -22,7 +22,6 @@ Route::prefix('admin')->name('admin.')->middleware(['role.check','auth','auth.ch
 
     Route::get('categories', CategoryFilter::class)
         ->name('categories.index');
-    Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
     Route::get('categories/create', CategoryCreate::class)->name('categories.create');
     Route::get('categories/{category}/edit', CategoryEdit::class)->name('categories.edit');
     Route::put('categories/{category}', [CategoryController::class, 'update'])->name('categories.update');

@@ -28,7 +28,7 @@ class HandleCategoryDeletion
         $action = $event->action;
         $defaultCategoryId = $event->defaultCategoryId;
         DB::transaction(function () use ($category, $action, $defaultCategoryId) {
-            if ($action === 'move') {
+            if ($action === 'move' && $defaultCategoryId) {
                 // Move all products to the default category
                 Product::where('category_id', $category->id)->update(['category_id' => $defaultCategoryId]);
             } elseif ($action === 'delete') {
