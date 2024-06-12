@@ -11,8 +11,11 @@ use App\Http\Controllers\tinTucController;
 use App\Http\Controllers\shopController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\GuiEmail;
+
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Login;
+use App\Livewire\ForgetPass;
+use App\Livewire\GetPass;
 /* Admin */
 
 require __DIR__ . "/admin.php";
@@ -40,7 +43,14 @@ Route::prefix('product')->name('product.')->group(function () {
 Route::prefix('user')->name('user.')->group(function () {
     // Route::get('login', [UserController::class, 'login_page'])->name('login');
     Route::resources(['list' => UserController::class]);
+    
+    Route::get('/forget-password', ForgetPass::class)->name('forgetPass');
+    Route::post('/forget-password', [UserController::class, 'postForgetPass']);
+    // Route::get('/get-password/{user}/{token}', [UserController::class, 'getPass'])->name('getPass');
+    Route::get('/get-password/{user}/{token}', GetPass::class)->name('getPass');
+    Route::post('/get-password/{user}/{token}', [UserController::class, 'postGetPass']);
 });
+
 Route::get('login', Login::class)->name('login');
 Route::get('register', Register::class)->name('register');
 Route::get('logout', function (Request $request) {
