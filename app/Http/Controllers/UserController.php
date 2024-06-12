@@ -4,14 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use  Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function postGetPass() {
-        
+    public function postGetPass()
+    {
     }
     public function index()
     {
@@ -63,13 +67,19 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'password' => 'required|string|min:1|confirmed',
             'role' => 'required|integer',
         ]);
 
-        $user->update($request->all());
+        DB::table('users')->where('id', $user->id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+        ]);
 
-        return redirect()->route('admin.userlist')->with('success', 'User updated successfully');
+        return redirect()->route('admin.userlist')->with('success', 'User information updated successfully.');
     }
 
     /**

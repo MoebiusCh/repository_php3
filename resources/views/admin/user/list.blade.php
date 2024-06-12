@@ -25,7 +25,7 @@
                             <td class="py-2 px-4 border-b">{{ $user->email_verified_at ?? 'Not Verified' }}</td>
                             <td class="py-2 px-4 border-b">{{ $user->role == 0 ? 'Admin' : 'Người dùng' }}</td>
                             <td class="py-2 px-4 border-b">
-                                <a href="{{ route('admin.users.edit', $user->id) }}"
+                                <a href="{{ route('admin.users.edit', ['user' => $user->id]) }}"
                                     class="bg-blue-500 text-white px-4 py-2 rounded">Edit</a>
                                 <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
                                     class="inline-block">

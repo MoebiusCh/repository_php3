@@ -18,10 +18,10 @@
                     <img class="w-full h-72" src="{{ asset('storage/' . $product->image) }}" alt="" />
                 </div>
                 <div class="grid grid-cols-4 gap-x-2">
-                    <img class="" src="{{  asset('storage/' . $product->image) }}" alt="" />
-                    <img class="" src="{{  asset('storage/' . $product->image) }}" alt="" />
-                    <img class="" src="{{  asset('storage/' . $product->image) }}" alt="" />
-                    <img class="" src="{{  asset('storage/' . $product->image) }}" alt="" />
+                    <img class="" src="{{ asset('storage/' . $product->image) }}" alt="" />
+                    <img class="" src="{{ asset('storage/' . $product->image) }}" alt="" />
+                    <img class="" src="{{ asset('storage/' . $product->image) }}" alt="" />
+                    <img class="" src="{{ asset('storage/' . $product->image) }}" alt="" />
                 </div>
             </div>
 
@@ -43,7 +43,8 @@
                                     class="input input-bordered w-full max-w-xs" />
                             </div>
                             <div class="flex">
-                                <button class="btn">Thêm vào giỏ hàng</button>
+                                {{-- <button class="btn add-to-cart">Thêm vào giỏ hàng</button> --}}
+                                <livewire:add-to-cart-button :productId="$product->id" />
                                 <button class="btn">Mua ngay</button>
                             </div>
                         </form>

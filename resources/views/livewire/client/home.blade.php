@@ -26,11 +26,13 @@
             <span class="badge badge-error uppercase">Hot</span>
         </div>
         <div class="products grid grid-cols-4 gap-2">
+            <!-- resources/views/home.blade.php -->
             @foreach ($products as $item)
-                <form class="card space-x-1 bg-base-100 shadow-xl">
+                <div class="card space-x-1 bg-base-100 shadow-xl">
                     <figure>
                         <a href="{{ route('product.list.show', ['list' => $item->id]) }}">
-                            <img src="{{ asset('storage/' . $item->image) }}" alt="Shoes" class="cursor-pointer lg:max-h-40" />
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="Shoes"
+                                class="cursor-pointer lg:max-h-40" />
                         </a>
                     </figure>
                     <div class="card-body">
@@ -47,13 +49,14 @@
                                 {{ $item->price }}
                                 <sup>đ</sup>
                             </div>
-                            <button class="btn btn-primary">Buy Now</button>
+                            <livewire:add-to-cart-button :productId="$item->id" />
                         </div>
                     </div>
-                </form>
+                </div>
             @endforeach
+
         </div>
-        <div class="mb-5 mt-section-space text-2xl font-bold">
+        {{--   <div class="mb-5 mt-section-space text-2xl font-bold">
             Sản phẩm
             <span class="badge badge-warning uppercase">Mới</span>
         </div>
@@ -87,6 +90,6 @@
                     </div>
                 </div>
             </form>
-        </div>
+        </div> --}}
     </main>
 </div>

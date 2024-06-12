@@ -16,6 +16,8 @@ use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Login;
 use App\Livewire\ForgetPass;
 use App\Livewire\GetPass;
+
+use App\Livewire\ShoppingCart;
 /* Admin */
 
 require __DIR__ . "/admin.php";
@@ -43,7 +45,7 @@ Route::prefix('product')->name('product.')->group(function () {
 Route::prefix('user')->name('user.')->group(function () {
     // Route::get('login', [UserController::class, 'login_page'])->name('login');
     Route::resources(['list' => UserController::class]);
-    
+
     Route::get('/forget-password', ForgetPass::class)->name('forgetPass');
     Route::post('/forget-password', [UserController::class, 'postForgetPass']);
     // Route::get('/get-password/{user}/{token}', [UserController::class, 'getPass'])->name('getPass');
@@ -64,7 +66,9 @@ Route::get('tintuc', [tinTucController::class, 'index'])->name('tintuc');
 Route::get('tintrongloai/{id}', [tinTucController::class, 'tintrongloai']);
 Route::get('tindetail/{id}', [tinTucController::class, 'detail'])->name('tindetail');
 
-Route::get('cart', [shopController::class, 'cart'])->name('cart');
+// Route::get('cart', [shopController::class, 'cart'])->name('cart');
+Route::get('cart', ShoppingCart::class)->name('cart');
+// Route::post('cart/add/{product}', [ProductController::class, 'addToCart'])->name('cart.add');
 Route::get('checkout', [shopController::class, 'checkout'])->name('checkout');
 Route::get('contact', [shopController::class, 'contact'])->name('contact');
 Route::get('about', [shopController::class, 'about'])->name('about');
